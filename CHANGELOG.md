@@ -13,5 +13,5 @@ _No unreleased changes_
 ### Added
 - Initial release
 
-[unreleased]: https://github.com/edgarfgp/Fabulous.AST/compare/1.0.0...HEAD
-[1.0.0]: https://github.com/edgarfgp/Fabulous.AST/releases/tag/1.0.0
+[unreleased]: https://github.com/edgarfgp/Fabulous.Builders/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.0.0
