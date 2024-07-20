@@ -34,8 +34,8 @@ pipeline "ci" {
     }
 
     stage "docs" {
-        run $"dotnet publish src/Fabulous.Builders -f netstandard2.1 -c {config}"
-        run $"dotnet fsdocs build --properties Configuration={config} --eval --strict"
+        run $"dotnet publish src/Fabulous.Builders.fsproj -f netstandard2.1 -c {config}"
+    // run $"dotnet fsdocs build --properties Configuration={config} --eval --strict"
     }
 
     stage "pack" { run $"dotnet pack {sln} -c {config} -p:PackageOutputPath=\"%s{nupkgs}\" {versionProperty}" }
@@ -43,11 +43,11 @@ pipeline "ci" {
     runIfOnlySpecified false
 }
 
-pipeline "docs" {
-    description "Run the documentation website"
-    stage "build" { run "dotnet publish src/Fabulous.Builders -f netstandard2.1 -c Release" }
-    stage "watch" { run "dotnet fsdocs watch --eval --clean" }
-    runIfOnlySpecified true
-}
+// pipeline "docs" {
+//     description "Run the documentation website"
+//     stage "build" { run "dotnet publish src/Fabulous.Builders -f netstandard2.1 -c Release" }
+//     stage "watch" { run "dotnet fsdocs watch --eval --clean" }
+//     runIfOnlySpecified true
+// }
 
 tryPrintPipelineCommandHelp()
