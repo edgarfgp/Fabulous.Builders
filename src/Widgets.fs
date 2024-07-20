@@ -1,8 +1,8 @@
-﻿namespace Fabulous.AST
+﻿namespace Fabulous.Builders
 
-open Fabulous.AST.ScalarAttributeDefinitions
-open Fabulous.AST.WidgetAttributeDefinitions
-open Fabulous.AST.WidgetCollectionAttributeDefinitions
+open Fabulous.Builders.ScalarAttributeDefinitions
+open Fabulous.Builders.WidgetAttributeDefinitions
+open Fabulous.Builders.WidgetCollectionAttributeDefinitions
 
 module Widgets =
     let register name (createFn: Widget -> 'T) =

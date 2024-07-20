@@ -1,4 +1,4 @@
-namespace Fabulous.AST
+namespace Fabulous.Builders
 
 /// Widget definition to create a control
 type WidgetDefinition =

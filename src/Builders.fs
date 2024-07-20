@@ -1,9 +1,9 @@
-namespace Fabulous.AST
+namespace Fabulous.Builders
 
 open System.ComponentModel
-open Fabulous.AST.StackAllocatedCollections
-open Fabulous.AST.StackAllocatedCollections.StackList
-open Fabulous.AST.WidgetCollectionAttributeDefinitions
+open Fabulous.Builders.StackAllocatedCollections
+open Fabulous.Builders.StackAllocatedCollections.StackList
+open Fabulous.Builders.WidgetCollectionAttributeDefinitions
 
 type AttributesBundle = (struct (StackList<ScalarAttribute> * WidgetAttribute array * WidgetCollectionAttribute array))
 

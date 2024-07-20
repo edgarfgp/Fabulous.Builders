@@ -1,4 +1,4 @@
-﻿namespace Fabulous.AST
+﻿namespace Fabulous.Builders
 
 module ScalarAttributeDefinitions =
     /// Attribute definition for boxed scalar properties

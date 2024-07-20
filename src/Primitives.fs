@@ -10,7 +10,7 @@ can fit on a L1/L2 cache size by making those structs fit on 64 bits.
 Having those performance constraints prevents us for using inheritance
 or using interfaces on these structs *)
 
-namespace Fabulous.AST
+namespace Fabulous.Builders
 
 /// Strongly types a scalar attribute key
 [<Measure>]

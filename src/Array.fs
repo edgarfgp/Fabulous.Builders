@@ -3,7 +3,7 @@
 This file contains array implementations optimized for stack-based values.
 This reduce the number of allocations on the heap required, reducing the GC pressure. *)
 
-namespace Fabulous.AST
+namespace Fabulous.Builders
 
 open System
 open System.Collections.Generic

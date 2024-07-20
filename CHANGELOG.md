@@ -13,5 +13,11 @@ _No unreleased changes_
 ### Added
 - Initial release
 
-[unreleased]: https://github.com/edgarfgp/Fabulous.Builders/compare/1.0.0...HEAD
+## [1.1.0] - 2024-07-20
+
+### Fixed
+- Fix namespace collision with `Fabulous.AST` by renaming the namespace to `Fabulous.Builders`
+
+[unreleased]: https://github.com/edgarfgp/Fabulous.Builders/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.1.0
 [1.0.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.0.0

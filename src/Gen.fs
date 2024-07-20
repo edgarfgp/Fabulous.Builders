@@ -1,4 +1,4 @@
-namespace Fabulous.AST
+namespace Fabulous.Builders
 
 /// It takes the root of the widget tree and create the corresponding Fantomas node, and recursively creating all children nodes
 module Gen =
