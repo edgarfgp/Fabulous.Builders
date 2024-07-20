@@ -18,6 +18,12 @@ _No unreleased changes_
 ### Fixed
 - Fix namespace collision with `Fabulous.AST` by renaming the namespace to `Fabulous.Builders`
 
-[unreleased]: https://github.com/edgarfgp/Fabulous.Builders/compare/1.1.0...HEAD
+## [1.1.1] - 2024-07-20
+
+### Changed
+- Remove unused modules
+
+[unreleased]: https://github.com/edgarfgp/Fabulous.Builders/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.1.1
 [1.1.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.1.0
 [1.0.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.0.0

@@ -100,6 +100,3 @@ module Widgets =
 
     let createNodeFromBuilder(builder: WidgetBuilder<'T>) : 'U =
         builder.Compile() |> createValueForWidget<'U>
-
-[<AbstractClass; Sealed>]
-type Ast = class end

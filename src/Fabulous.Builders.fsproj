@@ -31,7 +31,6 @@
       <Compile Include="WidgetDefinitions.fs" />
       <Compile Include="Widgets.fs" />
       <Compile Include="Attributes.fs" />
-      <Compile Include="Gen.fs" />
     </ItemGroup>
 
 </Project>
