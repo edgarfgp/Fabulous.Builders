@@ -23,7 +23,13 @@ _No unreleased changes_
 ### Changed
 - Remove unused modules
 
-[unreleased]: https://github.com/edgarfgp/Fabulous.Builders/compare/1.1.1...HEAD
+## [1.2.0] - 2024-07-21
+
+### Added
+- Add `SingleChildBuilder` widget
+
+[unreleased]: https://github.com/edgarfgp/Fabulous.Builders/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.2.0
 [1.1.1]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.1.1
 [1.1.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.1.0
 [1.0.0]: https://github.com/edgarfgp/Fabulous.Builders/releases/tag/1.0.0

@@ -3,6 +3,7 @@ namespace Fabulous.Builders
 open System.ComponentModel
 open Fabulous.Builders.StackAllocatedCollections
 open Fabulous.Builders.StackAllocatedCollections.StackList
+open Fabulous.Builders.WidgetAttributeDefinitions
 open Fabulous.Builders.WidgetCollectionAttributeDefinitions
 
 type AttributesBundle = (struct (StackList<ScalarAttribute> * WidgetAttribute array * WidgetCollectionAttribute array))
@@ -93,7 +94,7 @@ type WidgetBuilder<'marker> =
                 | attribs ->
                     let attribs2 = Array.zeroCreate(attribs.Length + 1)
                     Array.blit attribs 0 attribs2 0 attribs.Length
-                    attribs2.[attribs.Length] <- attr
+                    attribs2[attribs.Length] <- attr
                     attribs2
 
             WidgetBuilder<'marker>(x.Key, struct (scalarAttributes, res, widgetCollectionAttributes))
@@ -111,7 +112,7 @@ type WidgetBuilder<'marker> =
                 | attribs ->
                     let attribs2 = Array.zeroCreate(attribs.Length + 1)
                     Array.blit attribs 0 attribs2 0 attribs.Length
-                    attribs2.[attribs.Length] <- attr
+                    attribs2[attribs.Length] <- attr
                     attribs2
 
             WidgetBuilder<'marker>(x.Key, struct (scalarAttributes, widgetAttributes, res))
@@ -255,4 +256,60 @@ type AttributeCollectionBuilder<'marker, 'itemMarker> =
                 |> Seq.map(fun widget -> widget.Compile())
                 |> Seq.toArray
                 |> MutStackArray1.fromArray }
+    end
+
+[<Struct>]
+type SingleChildContent = { Child: Widget }
+
+/// A Computation Expression builder accepting a single child widget.
+[<Struct; NoComparison; NoEquality>]
+type SingleChildBuilder<'marker, 'childMarker> =
+    struct
+        val Key: WidgetKey
+        val Attributes: AttributesBundle
+        val Attr: WidgetAttributeDefinition
+
+        new(key: WidgetKey, attr: WidgetAttributeDefinition, attributes: AttributesBundle) =
+            { Key = key
+              Attributes = attributes
+              Attr = attr }
+
+        new(key: WidgetKey, attr: WidgetAttributeDefinition) =
+            { Key = key
+              Attributes = AttributesBundle(StackList.empty(), Array.empty, Array.empty)
+              Attr = attr }
+
+        /// Starts with a state equals to unit so we can force yield to only be used once.
+        member inline _.Zero() = ()
+
+        member inline _.Yield(child: WidgetBuilder<'childMarker>) = { Child = child.Compile() }
+
+        /// Combines only the Zero state with the first child.
+        /// Subsequent children won't be allowed thanks to the Unit initial state.
+        member inline _.Combine(_: unit, b: SingleChildContent) = b
+
+        member inline _.Delay([<InlineIfLambda>] f: unit -> SingleChildContent) = f()
+
+        /// Creates the current widget using the accumulated attributes and the child.
+        member inline x.Run(c: SingleChildContent) =
+            let struct (scalars, widgets, widgetCollections) = x.Attributes
+
+            let widgetAttr = x.Attr.WithValue(c.Child)
+
+            let widgets =
+                match widgets with
+                | [||] -> [| widgetAttr |]
+                | widgets -> Array.append [| widgetAttr |] widgets
+
+            WidgetBuilder<'marker>(x.Key, AttributesBundle(scalars, widgets, widgetCollections))
+
+        member inline x.AddScalar(attr: ScalarAttribute) =
+            let struct (scalarAttributes, widgetAttributes, widgetCollectionAttributes) =
+                x.Attributes
+
+            SingleChildBuilder<'marker, 'childMarker>(
+                x.Key,
+                x.Attr,
+                struct (StackList.add(&scalarAttributes, attr), widgetAttributes, widgetCollectionAttributes)
+            )
     end
